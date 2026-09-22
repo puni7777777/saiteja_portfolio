@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafaf7;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-subtle: #f3f3ee;
+  --border-hairline: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --accent-treasury: #065f46;
+  --accent-treasury-dark: #044e39;
+  --accent-treasury-light: #ecfdf5;
+  --accent-navy: #0f2537;
+  --ink-primary: #0f172a;
+  --ink-secondary: #334155;
+  --ink-muted: #64748b;
+  --ink-faint: #94a3b8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif), "Libre Baskerville", Georgia, serif;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Tabular figures for accounting precision */
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ledger paper watermark grid lines */
+.ledger-grid-bg {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+}
+
+.ledger-subtle-rule {
+  background-size: 100% 24px;
+  background-image: linear-gradient(to bottom, transparent 23px, rgba(226, 232, 240, 0.6) 24px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Text selection styling */
+::selection {
+  background-color: #d1fae5;
+  color: #064e3b;
+}
+
+/* Accessible focus outline */
+:focus-visible {
+  outline: 2px solid #065f46;
+  outline-offset: 2px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
