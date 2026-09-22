@@ -4,6 +4,8 @@
  * Strict adherence: No fabricated metrics, employers, or credentials.
  */
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const resumeData = {
   personal: {
     name: "S. Venkata Sai Teja",
@@ -17,7 +19,7 @@ export const resumeData = {
     phoneHref: "tel:+919100210320",
     email: "saitejasuravaram@gmail.com",
     emailHref: "mailto:saitejasuravaram@gmail.com",
-    resumePdfUrl: "/SAITEJA_RESUME.pdf",
+    resumePdfUrl: `${basePath}/SAITEJA_RESUME.pdf`,
     availability: "Available for Finance & Accounting Roles",
   },
 

@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# S. Venkata Sai Teja - Professional Finance Portfolio
 
-## Getting Started
+A production-ready personal portfolio website for **S. Venkata Sai Teja** (MBA Finance | Junior Accountant at Mahasai Aluminium Profiles Pvt Ltd), built with Next.js (App Router), Tailwind CSS, Lucide React, and Motion.
 
-First, run the development server:
+Single Source of Truth: `SAITEJA_RESUME.pdf`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Development
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Run the local development server:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Static Export & GitHub Pages Configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is configured for automated static deployment to **GitHub Pages**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js Config (`next.config.mjs`)**:
+  - `output: 'export'` generates the static output in `./out`.
+  - `basePath: '/saiteja_portfolio'` ensures routes and assets work when hosted at `https://<username>.github.io/saiteja_portfolio/`.
+  - `images: { unoptimized: true }` enables static hosting without a Node.js image optimization server.
+  - In development (`npm run dev`), `basePath` defaults to empty (`""`) so `http://localhost:3000` functions normally.
+- **Jekyll Disabled (`public/.nojekyll`)**:
+  - Tells GitHub Pages not to ignore `_next/` directories.
+- **GitHub Actions Workflow (`.github/workflows/deploy.yml`)**:
+  - Automatically builds and deploys to GitHub Pages whenever you push to the `main` branch.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to Deploy to GitHub Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Commit and push your changes to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Configure project for GitHub Pages static deployment"
+   git push origin main
+   ```
+
+2. **Enable GitHub Actions in GitHub Pages Settings**:
+   - Go to your repository on GitHub: `https://github.com/puni7777777/saiteja_portfolio`
+   - Click **Settings** (top navigation)
+   - Click **Pages** (in the left sidebar under *Code and automation*)
+   - Under **Build and deployment** > **Source**, select **GitHub Actions** (instead of *Deploy from a branch*)
+
+3. **View the live site**:
+   - The deployment workflow in the **Actions** tab will run automatically.
+   - Once completed, your site will be live at:
+     **https://puni7777777.github.io/saiteja_portfolio/**
