@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${libreBaskerville.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#fafaf7] text-[#0f172a]">
+      <body className="min-h-full flex flex-col bg-[#090d16] text-[#f1f5f9]">
         {children}
       </body>
     </html>

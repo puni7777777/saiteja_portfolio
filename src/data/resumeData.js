@@ -20,6 +20,7 @@ export const resumeData = {
     email: "saitejasuravaram@gmail.com",
     emailHref: "mailto:saitejasuravaram@gmail.com",
     resumePdfUrl: `${basePath}/SAITEJA_RESUME.pdf`,
+    photoUrl: `${basePath}/photo.jpeg`,
     availability: "Available for Finance & Accounting Roles",
   },
 

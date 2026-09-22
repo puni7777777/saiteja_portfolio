@@ -1,19 +1,20 @@
 ---
 name: S. Venkata Sai Teja Portfolio
-description: High-Precision Financial Accounting & Operational Architecture
+description: High-Precision Dark Finance Architecture & Professional Portfolio
 colors:
-  primary: "#065f46"
-  primary-dark: "#044e39"
-  primary-light: "#ecfdf5"
-  secondary: "#0f2537"
-  neutral-bg: "#fafaf7"
-  neutral-surface: "#ffffff"
-  neutral-surface-subtle: "#f8fafc"
-  neutral-border: "#e2e8f0"
-  neutral-border-strong: "#cbd5e1"
-  neutral-text-primary: "#0f172a"
-  neutral-text-secondary: "#334155"
-  neutral-text-muted: "#64748b"
+  primary: "#10b981"
+  primary-dark: "#059669"
+  primary-light: "rgba(16, 185, 129, 0.1)"
+  emerald-light: "#34d399"
+  secondary: "#141c2c"
+  neutral-bg: "#090d16"
+  neutral-surface: "#141c2c"
+  neutral-surface-subtle: "#0d131f"
+  neutral-border: "#1e2a3d"
+  neutral-border-strong: "#2a3b54"
+  neutral-text-primary: "#f1f5f9"
+  neutral-text-secondary: "#cbd5e1"
+  neutral-text-muted: "#94a3b8"
 typography:
   display:
     fontFamily: "var(--font-serif), 'Libre Baskerville', Georgia, serif"
@@ -45,6 +46,18 @@ typography:
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "0.05em"
+  caption:
+    fontFamily: "var(--font-mono), ui-monospace, SFMono-Regular, monospace"
+    fontSize: "0.6875rem"
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: "0.02em"
+  micro:
+    fontFamily: "var(--font-mono), ui-monospace, SFMono-Regular, monospace"
+    fontSize: "0.625rem"
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: "0.02em"
 rounded:
   xs: "2px"
   sm: "4px"

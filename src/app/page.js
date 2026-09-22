@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Hero from "@/components/Hero";
 import ProfileSection from "@/components/ProfileSection";
 import ExperienceSection from "@/components/ExperienceSection";
@@ -15,7 +16,10 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#fafaf7] text-[#0f172a] selection:bg-[#d1fae5] selection:text-[#064e3b]">
+    <div className="min-h-screen flex flex-col bg-[#090d16] text-[#f1f5f9] selection:bg-[#10b981]/25 selection:text-[#10b981]">
+      {/* Precision Scroll Indicator */}
+      <ScrollProgressBar />
+
       {/* Sticky Executive Navigation Bar */}
       <Navbar />
 

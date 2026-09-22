@@ -1,375 +1,185 @@
 "use client";
 
-import { useState } from "react";
+import { motion } from "motion/react";
 import {
   Download,
   ArrowDownRight,
   Mail,
   Phone,
   MapPin,
-  CheckCircle2,
-  FileCheck2,
-  Scale,
-  Building2,
   ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 import { resumeData } from "@/data/resumeData";
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState("balance");
+  const { personal } = resumeData;
 
   return (
     <section
       id="overview"
-      className="relative pt-10 pb-16 md:pt-16 md:pb-24 overflow-hidden border-b border-[#e2e8f0]"
+      className="relative pt-8 pb-16 md:pt-14 md:pb-24 overflow-hidden border-b border-[#1e2a3d] bg-[#090d16]"
     >
-      {/* Subtle architectural ledger grid background */}
-      <div
-        className="absolute inset-0 ledger-grid-bg pointer-events-none opacity-40"
-        aria-hidden="true"
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Authoritative Editorial Header */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Professional Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xs bg-[#ecfdf5] border border-[#a7f3d0] text-[#065f46] text-xs font-mono mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#059669]" />
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* PHOTO COLUMN:
+              On Mobile: Appears first (order-1), centered, constrained width.
+              On Desktop: Appears in right column (lg:order-2, lg:col-span-5). */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="w-full order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end"
+          >
+            <div className="relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-sm">
+              {/* Outer architectural frame */}
+              <div className="relative rounded-xs overflow-hidden border border-[#2a3b54] bg-[#141c2c] shadow-2xl">
+                {/* Profile Photo */}
+                <div className="aspect-[4/5] overflow-hidden bg-[#0d131f] relative">
+                  <img
+                    src={personal.photoUrl}
+                    alt={`${personal.name} - Professional Portrait`}
+                    className="w-full h-full object-cover object-top filter contrast-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-40 pointer-events-none" />
+                </div>
+
+                {/* Photo Caption Strip */}
+                <div className="p-3 sm:p-3.5 bg-[#0d131f] border-t border-[#1e2a3d] flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#10b981]" />
+                    <span className="font-mono text-xs text-[#cbd5e1] font-semibold tracking-wide">
+                      {personal.name}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] text-[#10b981] bg-[#10b981]/10 px-2 py-0.5 rounded-xs border border-[#10b981]/25">
+                    Junior Accountant
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* TEXT NARRATIVE COLUMN:
+              On Mobile: Appears under photo (order-2).
+              On Desktop: Appears in left column (lg:order-1, lg:col-span-7). */}
+          <div className="w-full order-2 lg:order-1 lg:col-span-7 flex flex-col items-start text-left">
+            {/* Status Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xs bg-[#10b981]/10 border border-[#10b981]/25 text-[#10b981] text-xs font-mono mb-5"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
               <span className="font-semibold uppercase tracking-wider">
                 Junior Accountant • Mahasai Aluminium Profiles
               </span>
-            </div>
+            </motion.div>
 
             {/* Name */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#0f172a] leading-[1.1] mb-5">
-              {resumeData.personal.name}
-            </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#f1f5f9] leading-[1.1] mb-4"
+            >
+              {personal.name}
+            </motion.h1>
 
             {/* Professional Positioning Title */}
-            <div className="text-base sm:text-lg font-medium text-[#065f46] tracking-tight mb-6 pb-4 border-b border-[#e2e8f0] w-full">
-              {resumeData.personal.positioning}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-sm sm:text-base lg:text-lg font-medium text-[#10b981] tracking-tight mb-5 pb-3 border-b border-[#1e2a3d] w-full"
+            >
+              {personal.positioning}
+            </motion.div>
 
             {/* Factual Narrative derived strictly from Resume */}
-            <p className="text-base sm:text-lg text-[#334155] leading-relaxed max-w-2xl mb-8">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed max-w-2xl mb-7"
+            >
               Finance professional with hands-on experience in financial accounting,
               GST compliance (GSTR-1 &amp; GSTR-3B), bank reconciliation (BRS),
               accounts payable &amp; receivable, and financial reporting. Experienced
               in Tally Prime, ERP systems, and MS Excel with practical accounting
               experience since 2023. Currently pursuing an MBA in Finance.
-            </p>
+            </motion.p>
 
             {/* Verified Contact Coordinates Bar */}
-            <div className="w-full bg-white border border-[#e2e8f0] p-4 rounded-xs mb-8 shadow-xs">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="w-full bg-[#141c2c] border border-[#1e2a3d] p-3.5 sm:p-4 rounded-xs mb-7 shadow-lg"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div className="flex items-center gap-2 text-[#475569]">
-                  <MapPin className="w-4 h-4 text-[#065f46] shrink-0" />
-                  <span className="font-medium text-[#0f172a]">
-                    {resumeData.personal.location}
+                <div className="flex items-center gap-2 text-[#94a3b8]">
+                  <MapPin className="w-4 h-4 text-[#10b981] shrink-0" />
+                  <span className="font-medium text-[#f1f5f9]">
+                    {personal.location}
                   </span>
                 </div>
                 <a
-                  href={resumeData.personal.phoneHref}
-                  className="flex items-center gap-2 text-[#475569] hover:text-[#065f46] transition-colors"
+                  href={personal.phoneHref}
+                  className="flex items-center gap-2 text-[#94a3b8] hover:text-[#10b981] transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-[#065f46] shrink-0" />
-                  <span className="font-mono">{resumeData.personal.phone}</span>
+                  <Phone className="w-4 h-4 text-[#10b981] shrink-0" />
+                  <span className="font-mono">{personal.phone}</span>
                 </a>
                 <a
-                  href={resumeData.personal.emailHref}
-                  className="flex items-center gap-2 text-[#475569] hover:text-[#065f46] transition-colors truncate"
-                  title={resumeData.personal.email}
+                  href={personal.emailHref}
+                  className="flex items-center gap-2 text-[#94a3b8] hover:text-[#10b981] transition-colors truncate"
+                  title={personal.email}
                 >
-                  <Mail className="w-4 h-4 text-[#065f46] shrink-0" />
+                  <Mail className="w-4 h-4 text-[#10b981] shrink-0" />
                   <span className="truncate font-mono">
-                    {resumeData.personal.email}
+                    {personal.email}
                   </span>
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Action CTAs */}
-            <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto"
+            >
               <a
                 href="#experience"
-                className="w-full sm:w-auto px-6 py-3.5 bg-[#0f2537] text-white hover:bg-[#1a364d] text-sm font-medium rounded-xs transition-colors flex items-center justify-center gap-2 shadow-xs"
+                className="w-full sm:w-auto px-5 py-3 bg-[#059669] hover:bg-[#047857] text-white text-xs sm:text-sm font-medium rounded-xs transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
               >
                 <span>View Professional Experience</span>
                 <ArrowDownRight className="w-4 h-4" />
               </a>
 
               <a
-                href={resumeData.personal.resumePdfUrl}
+                href={personal.resumePdfUrl}
                 download="SAITEJA_RESUME.pdf"
-                className="w-full sm:w-auto px-6 py-3.5 bg-white text-[#0f172a] hover:bg-[#f8fafc] border border-[#cbd5e1] hover:border-[#065f46] text-sm font-medium rounded-xs transition-colors flex items-center justify-center gap-2 shadow-xs"
+                className="w-full sm:w-auto px-5 py-3 bg-[#141c2c] hover:bg-[#182236] text-[#f1f5f9] border border-[#2a3b54] hover:border-[#10b981] text-xs sm:text-sm font-medium rounded-xs transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
               >
-                <Download className="w-4 h-4 text-[#065f46]" />
+                <Download className="w-4 h-4 text-[#10b981]" />
                 <span>Download Resume (PDF)</span>
               </a>
 
               <a
                 href="#contact"
-                className="w-full sm:w-auto px-5 py-3.5 text-[#334155] hover:text-[#065f46] text-sm font-medium flex items-center justify-center gap-1.5 transition-colors"
+                className="w-full sm:w-auto px-4 py-3 text-[#cbd5e1] hover:text-[#10b981] text-xs sm:text-sm font-medium flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 <span>Direct Contact</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right Column: Interactive Conceptual Financial Ledger & Operational Architecture */}
-          <div className="lg:col-span-5">
-            <div className="bg-white border border-[#cbd5e1] rounded-xs shadow-md p-5 relative">
-              {/* Header of the Ledger Terminal */}
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#e2e8f0]">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#065f46]" />
-                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#0f172a]">
-                    Operational Ledger Architecture
-                  </span>
-                </div>
-                <span className="text-[11px] font-mono text-[#059669] bg-[#ecfdf5] px-2 py-0.5 rounded-xs border border-[#a7f3d0]">
-                  Active Controls
-                </span>
-              </div>
-
-              {/* Tab Selector */}
-              <div className="grid grid-cols-3 gap-1 bg-[#f1f5f9] p-1 rounded-xs mb-4">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("balance")}
-                  className={`py-1.5 text-xs font-medium rounded-xs transition-all cursor-pointer ${
-                    activeTab === "balance"
-                      ? "bg-white text-[#0f172a] shadow-xs"
-                      : "text-[#64748b] hover:text-[#0f172a]"
-                  }`}
-                >
-                  Dual Balance
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("brs")}
-                  className={`py-1.5 text-xs font-medium rounded-xs transition-all cursor-pointer ${
-                    activeTab === "brs"
-                      ? "bg-white text-[#0f172a] shadow-xs"
-                      : "text-[#64748b] hover:text-[#0f172a]"
-                  }`}
-                >
-                  BRS Logic
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("gst")}
-                  className={`py-1.5 text-xs font-medium rounded-xs transition-all cursor-pointer ${
-                    activeTab === "gst"
-                      ? "bg-white text-[#0f172a] shadow-xs"
-                      : "text-[#64748b] hover:text-[#0f172a]"
-                  }`}
-                >
-                  GST Stream
-                </button>
-              </div>
-
-              {/* Content Panels */}
-              {activeTab === "balance" && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="text-[11px] text-[#64748b] pb-1 border-b border-[#f1f5f9] flex justify-between">
-                    <span>Double-Entry General Ledger</span>
-                    <span>Debit = Credit Check</span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div>
-                        <span className="text-[#0f172a] font-medium block">
-                          Trade Accounts Receivable (AR)
-                        </span>
-                        <span className="text-[10px] text-[#64748b]">
-                          Debit • Asset ledger
-                        </span>
-                      </div>
-                      <span className="font-semibold text-[#065f46]">Balanced</span>
-                    </div>
-
-                    <div className="flex justify-between items-center p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div>
-                        <span className="text-[#0f172a] font-medium block">
-                          Trade Accounts Payable (AP)
-                        </span>
-                        <span className="text-[10px] text-[#64748b]">
-                          Credit • Liability ledger
-                        </span>
-                      </div>
-                      <span className="font-semibold text-[#065f46]">Balanced</span>
-                    </div>
-
-                    <div className="flex justify-between items-center p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div>
-                        <span className="text-[#0f172a] font-medium block">
-                          Cash &amp; Bank Ledgers
-                        </span>
-                        <span className="text-[10px] text-[#64748b]">
-                          Voucher verified &amp; posted
-                        </span>
-                      </div>
-                      <span className="font-semibold text-[#065f46]">Reconciled</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-[#ecfdf5] border border-[#a7f3d0] rounded-xs mt-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Scale className="w-4 h-4 text-[#065f46]" />
-                      <span className="font-sans font-medium text-xs text-[#065f46]">
-                        Trial Balance Equilibrium
-                      </span>
-                    </div>
-                    <span className="text-[#065f46] font-semibold text-xs">
-                      Matched (DR = CR)
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === "brs" && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="text-[11px] text-[#64748b] pb-1 border-b border-[#f1f5f9] flex justify-between">
-                    <span>Bank Reconciliation Model (BRS)</span>
-                    <span>Timing Resolution</span>
-                  </div>
-
-                  <div className="space-y-2 text-[11px]">
-                    <div className="p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between text-[#0f172a] font-medium">
-                        <span>1. Balance as per Cash Book</span>
-                        <span className="text-[#065f46]">Base Ledger</span>
-                      </div>
-                    </div>
-
-                    <div className="p-2 bg-white border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between items-center text-[#334155]">
-                        <span className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#059669]" />
-                          <span>(+) Cheques deposited not yet cleared</span>
-                        </span>
-                        <span className="text-[#64748b]">Timing Diff</span>
-                      </div>
-                    </div>
-
-                    <div className="p-2 bg-white border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between items-center text-[#334155]">
-                        <span className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#e11d48]" />
-                          <span>(-) Cheques issued not yet presented</span>
-                        </span>
-                        <span className="text-[#64748b]">Timing Diff</span>
-                      </div>
-                    </div>
-
-                    <div className="p-2 bg-white border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between items-center text-[#334155]">
-                        <span className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#d97706]" />
-                          <span>(-) Bank charges / interest debits</span>
-                        </span>
-                        <span className="text-[#64748b]">Adjusting Entry</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-[#ecfdf5] border border-[#a7f3d0] rounded-xs mt-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#065f46]" />
-                      <span className="font-sans font-medium text-xs text-[#065f46]">
-                        Reconciled with Passbook
-                      </span>
-                    </div>
-                    <span className="text-[#065f46] font-semibold text-xs">
-                      Discrepancies Resolved
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === "gst" && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="text-[11px] text-[#64748b] pb-1 border-b border-[#f1f5f9] flex justify-between">
-                    <span>Statutory Tax Filing Cycle</span>
-                    <span>Portal Verification</span>
-                  </div>
-
-                  <div className="space-y-2 text-[11px]">
-                    <div className="p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="font-bold text-[#0f172a] block">
-                            GSTR-1 (Outward Supplies)
-                          </span>
-                          <span className="text-[10px] text-[#64748b]">
-                            B2B &amp; B2C Sales Invoices Uploaded
-                          </span>
-                        </div>
-                        <span className="text-[#065f46] font-semibold">
-                          Compliant
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="font-bold text-[#0f172a] block">
-                            GSTR-3B (Monthly Summary)
-                          </span>
-                          <span className="text-[10px] text-[#64748b]">
-                            Tax Liability Offset vs ITC Ledger
-                          </span>
-                        </div>
-                        <span className="text-[#065f46] font-semibold">Filed</span>
-                      </div>
-                    </div>
-
-                    <div className="p-2 bg-[#f8fafc] border border-[#e2e8f0] rounded-xs">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <span className="font-bold text-[#0f172a] block">
-                            Supporting Documentation
-                          </span>
-                          <span className="text-[10px] text-[#64748b]">
-                            Vouchers, E-way Bills &amp; Bank Advices
-                          </span>
-                        </div>
-                        <span className="text-[#065f46] font-semibold">
-                          Archived
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-[#ecfdf5] border border-[#a7f3d0] rounded-xs mt-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <FileCheck2 className="w-4 h-4 text-[#065f46]" />
-                      <span className="font-sans font-medium text-xs text-[#065f46]">
-                        Statutory Filing Rigor
-                      </span>
-                    </div>
-                    <span className="text-[#065f46] font-semibold text-xs">
-                      Zero Default
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {/* Terminal Footer Note */}
-              <div className="mt-4 pt-3 border-t border-[#f1f5f9] flex items-center justify-between text-[11px] text-[#64748b]">
-                <span className="flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#065f46]" />
-                  <span>Mahasai Aluminium Profiles Pvt Ltd</span>
-                </span>
-                <span className="font-mono">Tally Prime &bull; ERP</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

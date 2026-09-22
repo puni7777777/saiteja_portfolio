@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf7;
-  --foreground: #0f172a;
-  --surface: #ffffff;
-  --surface-subtle: #f3f3ee;
-  --border-hairline: #e2e8f0;
-  --border-medium: #cbd5e1;
-  --accent-treasury: #065f46;
-  --accent-treasury-dark: #044e39;
-  --accent-treasury-light: #ecfdf5;
-  --accent-navy: #0f2537;
-  --ink-primary: #0f172a;
-  --ink-secondary: #334155;
-  --ink-muted: #64748b;
-  --ink-faint: #94a3b8;
+  --background: #090d16;
+  --background-secondary: #0d131f;
+  --surface: #141c2c;
+  --surface-subtle: #182236;
+  --border-hairline: #1e2a3d;
+  --border-medium: #2a3b54;
+  --border-accent: rgba(16, 185, 129, 0.3);
+  --accent-treasury: #10b981;
+  --accent-treasury-dark: #059669;
+  --accent-treasury-light: rgba(16, 185, 129, 0.1);
+  --accent-navy: #1e293b;
+  --ink-primary: #f1f5f9;
+  --ink-secondary: #cbd5e1;
+  --ink-muted: #94a3b8;
+  --ink-faint: #64748b;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--ink-primary);
   --font-serif: var(--font-serif), "Libre Baskerville", Georgia, serif;
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
@@ -30,55 +31,52 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Ledger paper watermark grid lines */
-.ledger-grid-bg {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
-}
-
-.ledger-subtle-rule {
-  background-size: 100% 24px;
-  background-image: linear-gradient(to bottom, transparent 23px, rgba(226, 232, 240, 0.6) 24px);
-}
-
-/* Custom scrollbar */
+/* Custom dark scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #090d16;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
+  background: #1e2a3d;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #2a3b54;
 }
 
 /* Text selection styling */
 ::selection {
-  background-color: #d1fae5;
-  color: #064e3b;
+  background-color: rgba(16, 185, 129, 0.25);
+  color: #34d399;
 }
 
 /* Accessible focus outline */
 :focus-visible {
-  outline: 2px solid #065f46;
+  outline: 2px solid #10b981;
   outline-offset: 2px;
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #090d16;
+  color: #f1f5f9;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
